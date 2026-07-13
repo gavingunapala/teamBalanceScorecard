@@ -1,3 +1,3 @@
 import React from 'react';
-import DashboardView from './components/DashboardView';
+import DashboardView from './components/dashboard/DashboardView';
 export default function App() { return <DashboardView />; }
