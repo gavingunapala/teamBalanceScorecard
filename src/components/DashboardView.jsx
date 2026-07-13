@@ -175,7 +175,7 @@ export default function DashboardView() {
                 <div className="p-1.5 bg-indigo-50 rounded-lg group-hover:bg-indigo-100 transition-colors"><ArrowLeft className="w-4 h-4" /></div> Retake Assessment
               </button>
               <div className="flex items-center gap-2 text-sm text-slate-500 font-mono bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100">
-                <UserCheck className="w-4 h-4 text-emerald-500" /> Participant_01
+                {/* <UserCheck className="w-4 h-4 text-emerald-500" /> Participant_01 */}
               </div>
             </div>
 
