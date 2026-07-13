@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Diagram & Flowchart</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f1f5f9; font-family: 'Inter', 'Segoe UI', sans-serif; padding: 40px 20px; }
+  .container { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 22px; margin-bottom: 4px; color: #1e293b; }
+  .subtitle { color: #64748b; margin-bottom: 36px; font-size: 13px; }
+  h2 { font-size: 18px; margin: 32px 0 12px; padding-left: 10px; border-left: 4px solid #6366f1; }
+  .diagram-box { background: white; border-radius: 12px; padding: 24px; margin-bottom: 24px; border: 1px solid #e2e8f0; overflow-x: auto; }
+  .footer { text-align: center; font-size: 11px; color: #94a3b8; margin-top: 36px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Employee Tech-Balance Scorecard</h1>
+  <p class="subtitle">M.Sc. IS Research (IT6010) — SLIIT</p>
+
+  <h2>1. System Architecture</h2>
+  <div class="diagram-box">
+    <pre class="mermaid">
+      graph LR
+        U["User"] --> AF["Assessment Form<br/>6 Sliders + Preference"]
+        AF --> IE["Logic Engine<br/>evaluateIndividualStatus()"]
+        IE --> GR["Recommendation Engine<br/>generatePersonalRecommendations()"]
+        GR --> RV["Results View<br/>3 Scorecards + Recommendations"]
+    </pre>
+  </div>
+
+  <h2>2. Flowchart</h2>
+  <div class="diagram-box">
+    <pre class="mermaid">
+      flowchart TD
+        S(("Start")) --> F["Fill Assessment Form<br/>(6 questions × 1-5 scale)"]
+        F --> P["Select Improvement Preference"]
+        P --> C{"Submit?"}
+        C -->|No| F
+        C -->|Yes| E["Evaluate Scores<br/>(Average each dimension)"]
+        E --> T["Apply RAG Thresholds<br/>RED / AMBER / GREEN"]
+        T --> R["Generate Recommendations<br/>(Rule-based + Preference)"]
+        R --> D["Display Scorecard<br/>3 Scores + Intervention List"]
+        D --> Q{"Retake?"}
+        Q -->|Yes| F
+        Q -->|No| D
+    </pre>
+  </div>
+
+  <div class="footer">SLIIT Computing Faculty — M.Sc. IS Research Project Artifact (IT6010)</div>
+</div>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#6366f1',primaryBorderColor:'#4338ca',primaryTextColor:'#1e293b',lineColor:'#94a3b8',fontSize:'14px'}});</script>
+</body>
+</html>
