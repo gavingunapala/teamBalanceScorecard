@@ -1,35 +1,58 @@
-import React from 'react';
-import { ArrowLeft, UserCheck, RefreshCw, Activity, ShieldAlert, ClipboardList, Sparkles, CheckCircle } from 'lucide-react';
+import React, { useRef } from 'react';
+import { ArrowLeft, RefreshCw, Activity, ShieldAlert, ClipboardList, Sparkles, CheckCircle, FileDown } from 'lucide-react';
 import ScoreCard from '../ui/ScoreCard';
 import RecommendationItem from '../ui/RecommendationItem';
 
 export default function ResultsView({ evaluation, recommendations, resetAssessment }) {
+  const reportRef = useRef();
+
   const getStatusColor = (status) => {
     if (status === 'RED') return 'bg-red-50 border-red-200 text-red-700';
     if (status === 'AMBER') return 'bg-amber-50 border-amber-200 text-amber-700';
     return 'bg-emerald-50 border-emerald-200 text-emerald-700';
   };
 
+  const getCardBg = (status) => {
+    if (status === 'RED') return 'bg-red-50/60 border-red-200';
+    if (status === 'AMBER') return 'bg-amber-50/60 border-amber-200';
+    return 'bg-emerald-50/60 border-emerald-200';
+  };
+
+  const downloadPDF = () => {
+    import('html2pdf.js').then((html2pdf) => {
+      const element = reportRef.current;
+      html2pdf.default().set({
+        margin: [10, 10],
+        filename: 'digital-scorecard-report.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      }).from(element).save();
+    });
+  };
+
   return (
-    <div className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="w-full space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500">
       
       {/* Top Return Utility Navigation */}
       <div className="flex items-center justify-between bg-white px-5 py-3 rounded-2xl border border-slate-200 shadow-sm">
         <button onClick={resetAssessment} className="flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-800 transition-colors font-semibold group">
           <div className="p-1.5 bg-indigo-50 rounded-lg group-hover:bg-indigo-100 transition-colors"><ArrowLeft className="w-4 h-4" /></div> Retake Assessment
         </button>
-        <div className="flex items-center gap-2 text-sm text-slate-500 font-mono bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100">
-          {/* <UserCheck className="w-4 h-4 text-emerald-500" /> Participant_01 */}
-        </div>
+        <button onClick={downloadPDF} className="flex items-center gap-2 text-sm text-slate-600 hover:text-indigo-600 transition-colors font-semibold group">
+          <div className="p-1.5 bg-slate-100 rounded-lg group-hover:bg-indigo-100 transition-colors"><FileDown className="w-4 h-4" /></div> Download PDF
+        </button>
       </div>
 
+      <div ref={reportRef}>
       {/* Main Calculated 3-Dimension Score Matrix */}
-      <section className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+      <section className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <ScoreCard 
           title="Productivity Score" 
           score={evaluation.productivityScore} 
           status={evaluation.productivityStatus} 
           statusColor={getStatusColor(evaluation.productivityStatus)}
+          cardBg={getCardBg(evaluation.productivityStatus)}
           icon={Activity}
         />
         <ScoreCard 
@@ -37,6 +60,7 @@ export default function ResultsView({ evaluation, recommendations, resetAssessme
           score={evaluation.burnoutScore} 
           status={evaluation.burnoutStatus} 
           statusColor={getStatusColor(evaluation.burnoutStatus)}
+          cardBg={getCardBg(evaluation.burnoutStatus)}
           icon={ShieldAlert}
         />
         <ScoreCard 
@@ -44,6 +68,7 @@ export default function ResultsView({ evaluation, recommendations, resetAssessme
           score={evaluation.wlbScore} 
           status={evaluation.wlbStatus} 
           statusColor={getStatusColor(evaluation.wlbStatus)}
+          cardBg={getCardBg(evaluation.wlbStatus)}
           icon={ClipboardList}
         />
       </section>
@@ -75,6 +100,7 @@ export default function ResultsView({ evaluation, recommendations, resetAssessme
           )}
         </div>
       </section>
+      </div>
       
       <div className="text-center pt-4 pb-10">
         <button onClick={resetAssessment} className="inline-flex items-center gap-2 text-sm bg-white border border-slate-200 text-slate-600 hover:text-indigo-600 hover:border-indigo-200 hover:bg-indigo-50 px-6 py-3 rounded-xl transition-all font-bold shadow-sm hover:shadow-md">

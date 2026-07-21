@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function ScoreCard({ title, score, status, statusColor, icon: Icon }) {
+export default function ScoreCard({ title, score, status, statusColor, cardBg, icon: Icon }) {
   return (
-    <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/40 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+    <div className={`p-6 rounded-3xl border shadow-xl shadow-slate-200/40 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 ${cardBg || 'bg-white border-slate-200'}`}>
       <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
         <Icon className="w-24 h-24" />
       </div>
