@@ -54,8 +54,8 @@ export default function AssessmentForm({ formData, handleSliderChange, handleSel
       <form onSubmit={processAssessment} className="space-y-10">
         {/* Productivity Blocks */}
         <div className="space-y-6">
-          <h3 className="text-indigo-600 font-bold uppercase tracking-widest text-[11px] pb-2 border-b border-indigo-100 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-indigo-500"></span> Dimension 1: Task Productivity
+          <h3 className="text-indigo-700 font-bold text-sm pb-3 border-b-2 border-indigo-200 flex items-center gap-3">
+            <span className="w-3 h-3 rounded-full bg-indigo-500 shrink-0"></span> <span>Dimension 1: Task Productivity</span>
           </h3>
           <div className="grid grid-cols-1 gap-6">
             <div className="space-y-3 p-5 bg-indigo-50/40 rounded-xl border border-indigo-100/50">
@@ -71,8 +71,8 @@ export default function AssessmentForm({ formData, handleSliderChange, handleSel
 
         {/* Burnout Strain Blocks */}
         <div className="space-y-6">
-          <h3 className="text-rose-500 font-bold uppercase tracking-widest text-[11px] pb-2 border-b border-rose-100 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-rose-400"></span> Dimension 2: Occupational Burnout Strain
+          <h3 className="text-rose-700 font-bold text-sm pb-3 border-b-2 border-rose-200 flex items-center gap-3">
+            <span className="w-3 h-3 rounded-full bg-rose-400 shrink-0"></span> <span>Dimension 2: Occupational Burnout Strain</span>
           </h3>
           <div className="grid grid-cols-1 gap-6">
             <div className="space-y-3 p-5 bg-rose-50/40 rounded-xl border border-rose-100/50">
@@ -88,8 +88,8 @@ export default function AssessmentForm({ formData, handleSliderChange, handleSel
 
         {/* Work-Life Balance Blocks */}
         <div className="space-y-6">
-          <h3 className="text-emerald-500 font-bold uppercase tracking-widest text-[11px] pb-2 border-b border-emerald-100 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400"></span> Dimension 3: Work-Life Balance Strength
+          <h3 className="text-emerald-700 font-bold text-sm pb-3 border-b-2 border-emerald-200 flex items-center gap-3">
+            <span className="w-3 h-3 rounded-full bg-emerald-400 shrink-0"></span> <span>Dimension 3: Work-Life Balance Strength</span>
           </h3>
           <div className="grid grid-cols-1 gap-6">
             <div className="space-y-3 p-5 bg-emerald-50/40 rounded-xl border border-emerald-100/50">
